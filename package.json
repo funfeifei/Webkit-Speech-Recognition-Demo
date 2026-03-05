@@ -1,0 +1,20 @@
+{
+    "name": "webkit-speech-demo",
+    "version": "1.0.0",
+    "description": "A simple demo for webkitSpeechRecognition using the Web Speech API",
+    "main": "index.html",
+    "scripts": {
+        "start": "http-server . -p 8080 -o"
+    },
+    "devDependencies": {
+        "http-server": "^14.1.1"
+    },
+    "keywords": [
+        "speech-recognition",
+        "webkit",
+        "demo",
+        "web-speech-api"
+    ],
+    "author": "",
+    "license": "MIT"
+}
