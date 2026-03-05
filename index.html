@@ -149,6 +149,18 @@
                     utterance.pitch = 1;
                     utterance.volume = 1;
 
+                    // Add event listeners to the utterance
+                    utterance.onend = () => {
+                        speakBtn.disabled = false;
+                        stopSpeakBtn.disabled = true;
+                    };
+
+                    utterance.onerror = (event) => {
+                        console.error('Speech synthesis error:', event.error);
+                        speakBtn.disabled = false;
+                        stopSpeakBtn.disabled = true;
+                    };
+
                     speechSynthesis.speak(utterance);
                     speakBtn.disabled = true;
                     stopSpeakBtn.disabled = false;
@@ -161,16 +173,17 @@
                 stopSpeakBtn.disabled = true;
             });
 
-            speechSynthesis.onend = () => {
-                speakBtn.disabled = false;
-                stopSpeakBtn.disabled = true;
-            };
+            // Remove global event handlers since we handle them per utterance
+            // speechSynthesis.onend = () => {
+            //     speakBtn.disabled = false;
+            //     stopSpeakBtn.disabled = true;
+            // };
 
-            speechSynthesis.onerror = (event) => {
-                console.error('Speech synthesis error:', event.error);
-                speakBtn.disabled = false;
-                stopSpeakBtn.disabled = true;
-            };
+            // speechSynthesis.onerror = (event) => {
+            //     console.error('Speech synthesis error:', event.error);
+            //     speakBtn.disabled = false;
+            //     stopSpeakBtn.disabled = true;
+            // };
         } else {
             document.getElementById('speak-btn').disabled = true;
             document.getElementById('speak-btn').textContent = 'Text to Speech not supported';
